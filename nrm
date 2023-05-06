@@ -1,0 +1,16 @@
+QUE 1 Find the roots of given function using NEWTON RAPHSON METHOD 27 \
+x^4 + 162 x^3 - 180 x^2 + 62 x - 7
+
+f[x_] := 27 x^4 + 162 x^3 - 180 x^2 + 62 x - 7
+
+x0 = 0;
+\[Epsilon] = 0.00005;
+Nmax = 10;
+
+For[n = 1, n <= Nmax, n++, x1 = N[x0 - f[x0]/f'[x0]];
+  If[Abs[x1 - x0] < \[Epsilon], Return[x1], x2 = x0; x0 = x1];
+  Print[n, "th ITERATION VALUE IS ", x1];
+  Print["ESTIMATED ERROR IS: ", Abs[x1 - x2]]];
+Print["THE FINAL APPROXIMATE ROOT IS ", x1];
+Print["FINAL ESTIMATED ERROR IS: ", Abs[x1 - x0]]
+Plot[f[x], {x, 1, 2}]
