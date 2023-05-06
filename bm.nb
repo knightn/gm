@@ -1,0 +1,24 @@
+Que 1 Find the root of equation using bisection method : 
+  x^3 + 4 x^2 - 10.
+
+z1 = FindRoot[x^3 + 4 x^2 - 10, {x, 1, 2}]
+
+{x \[RightArrow] 1.36523}
+f[x_] := x^3 + 4 x^2 - 10
+a = 1;
+b = 2;
+e = 0.01;
+
+Nmax = 10; "MAXIMUM NO OF ITERATIONS";
+
+If[f[a]*f[b] > 0,
+  Print["THESE VALUES DO NOT SATISFY THE IVP SO CHANGE THE INITIAL \
+VALUE"],
+  For[i = 1, i <= Nmax, i++, c = (a + b)/2;
+   If[Abs[(b - a)/2] < e, Return[c],
+    Print[i, "th ITERATION VALUE IS :", c];
+    Print["ESTIMATED ERROR IN ", i, "th ITERATION IS: ", (b - a)/2];
+    Print["EXACT ERROR IN ", i, "th ITERATION IS: ", 1.36523 - c];
+    If[f[a]*f[c] < 0, b = c, a = c]]]];
+          Print["THE APPROXIMATE ROOT IS : ", N[c]];
+  Plot[f[x], {x, 1, 2}]
