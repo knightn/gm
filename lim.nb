@@ -1,0 +1,19 @@
+Q .1
+
+xi = {-1, 0, 1, 2};
+fi = {5, 1, 1, 11};
+n = Length[xi];
+For [ k = 1, k <= n, k++,
+  Subscript[L, k][x_] = ( \!\(
+\*UnderoverscriptBox[\(\[Product]\), \(j = 1\), \(k - 1\)]
+\*FractionBox[\(x - xi[\([\)\(j\)\(]\)]\), \(xi[\([\)\(k\)\(]\)] - 
+        xi[\([\)\(j\)\(]\)]\)]\))*( \!\(
+\*UnderoverscriptBox[\(\[Product]\), \(j = k + 1\), \(n\)]
+\*FractionBox[\(x - xi[\([\)\(j\)\(]\)]\), \(xi[\([\)\(k\)\(]\)] - 
+        xi[\([\)\(j\)\(]\)]\)]\))];
+P[x_] = \!\(
+\*UnderoverscriptBox[\(\[Sum]\), \(k = 1\), \(n\)]\(
+\(\*SubscriptBox[\(L\), \(k\)]\)[x]*N[fi[\([\)\(k\)\(]\)]]\)\);
+Print["Lagrange Polynomial, P[x]= ", P[x]]
+Print["Simplified Polynomial, P[x]= ", Simplify[P[x]]]
+Print["Approximate value of f at x = 1.5 is ", P[1.5]]
