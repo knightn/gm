@@ -1,0 +1,20 @@
+Que 1 Find the roots of the given function using secant method : 
+  x^3 + 2*x^2 - 3 x + 1
+f[x_] := (x^3) + 2*(x^2) - 3*x - 1;
+Subscript[p, 0] = 2;
+Subscript[p, 1] = 1;
+eps = 0.000005;
+Nmax = 10;
+For[n = 2, n <= Nmax, n++, 
+  Subscript[p, n] = 
+   N[Subscript[p, n - 1] - 
+     f[Subscript[p, 
+        n - 1]]*(Subscript[p, n - 1] - 
+         Subscript[p, n - 2])/(f[Subscript[p, n - 1]] - 
+         f[Subscript[p, n - 2]])];
+  If[Abs[Subscript[p, n] - Subscript[p, n - 1]] < \[Epsilon], 
+   Return[Subscript[p, n]]];
+  Print[n - 1, "th iteration value is : ", Subscript[p, n]];
+  Print["Estimated Error is : ", 
+   Abs[Subscript[p, n] - Subscript[p, n - 1]]]];
+Plot[f[x], {x, 1, 2}]
