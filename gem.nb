@@ -1,0 +1,44 @@
+QUE 1 SOLVE THE GIVEN SYSTEM OF LINEAR EQUATION USING GAUSS ELIMATION \
+METHOD  
+
+A = {{2, 1, 1}, {3, 5, 2}, {2, 1, 4}};
+
+A // MatrixForm
+( {
+  {2, 1, 1},
+  {3, 5, 2},
+  {2, 1, 4}
+ } )
+
+b = {4, 15, 8};
+b // MatrixForm
+( {
+  {4},
+  {15},
+  {8}
+ } )
+
+m1 = Length[A];
+m2 = Length[b];
+x = Table[0, {m1}];
+
+If[m1 != m2, Print["The system cannot be solved"], 
+ Table[AppendTo[A[[i]], b[[i]]], {i, m1}];
+ Print["[A|b]=", A // MatrixForm];
+ For[i = 1, i <= m1 - 1, i++, s = Abs[A[[i, i]]];
+  c = i;
+  For[j = i + 1, j <= m1, j++, If[Abs[A[[j, i]]] > s, s = A[[j, i]];
+    c = j;]];
+  For[k = 1, k <= m1 + 1, k++, d[k] = A[[i, k]];
+   A[[i, k]] = A[[c, k]];
+   A[[c, k]] = d[k]];
+  Print["Step=", i, A // MatrixForm];
+  For[j = i + 1, j <= m1, j++, m = A[[j, i]]/A[[i, i]];
+   For[k = 1, k <= m1 + 1, k++, 
+    A[[j, k]] = A[[j, k]] - (m*A[[i, k]])];];
+  Print[A // MatrixForm];];
+ For[i = 0, i <= m1 - 1, i++, 
+  x[[m1 - i]] = (A[[m1 - i, m1 + 1]] - 
+       Sum[A[[m1 - i, j]]*x[[j]], {j, m1 - i + 1, m1}])/
+     A[[m1 - i, m1 - i]];];
+ Print["x", x // MatrixForm];]
