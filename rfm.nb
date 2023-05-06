@@ -1,0 +1,25 @@
+Que 1 Find the root of following using Regula falsi method
+
+z = FindRoot[Cos[x], {x, 1, 2}]
+
+{x \[RightArrow] 1.5708}
+
+f[x_] := Cos[x]
+
+a = 0;
+b = 2;
+\[Xi] = 0.0005;
+Nmax = 15;
+
+If[f[a]*f[b] > 0, 
+  Print["THESE VALUES DO NOT SATISFY THE IVP SO CHANGE THE INITIAL \
+VALUE"], For[i = 1, i <= Nmax, i++, 
+   c = N[(a*f[b] - b*f[a])/(f[b] - f[a])];
+   If[f[c]*f[b] > 0, b = c, a = c];
+   If[Abs[(b - a)] < \[Xi], Return[c]];
+   Print[i, "th ITERATION VALUE IS :", N[c]];
+   Print["ESTIMATED ERROR IS ", N[b - a], " EXACT ERROR IS: ", 
+    1.57079 - c]]];
+Print["THE APPROXIMATE ROOT IS : ", N[c]];
+Print["ESTIMATED ERROR IS : ", N[b - a]];
+Plot[f[x], {x, -1, 3}]
