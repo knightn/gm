@@ -1,0 +1,13 @@
+Find the integral
+\!\(
+\*SubsuperscriptBox[\(\[Integral]\), \(1\), \(5\)]\(
+\*FractionBox[\(1\), 
+SuperscriptBox[\(x\), \(2\)]] \[DifferentialD]x\)\)
+f[x_] := 1/x^2
+n = 10
+a = 1
+b = 5
+h = (b - a)/n
+
+sol = h /2*(f[a] + 2 (Sum[f[i], {i, a + h, b - h, h}]) + f[b]);
+N[sol]
